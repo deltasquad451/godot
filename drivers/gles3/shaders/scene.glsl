@@ -267,7 +267,7 @@ out highp vec4 position_interp;
 void main() {
 
 	highp vec4 vertex = vertex_attrib; // vec4(vertex_attrib.xyz * data_attrib.x,1.0);
-
+	vec4 inposition = vec4(0.0);
 	mat4 world_matrix = world_transform;
 
 #ifdef USE_INSTANCING
@@ -462,9 +462,15 @@ VERTEX_SHADER_CODE
 
 #endif //RENDER_DEPTH
 
+#if !defined(MANUAL_GLPOSITION)
 	gl_Position = projection_matrix * vec4(vertex_interp, 1.0);
 
-	position_interp = gl_Position;
+#else
+	gl_Position = inposition;
+	
+#endif //MANUAL_GLPOSITION
+
+position_interp = gl_Position;
 
 #ifdef USE_VERTEX_LIGHTING
 

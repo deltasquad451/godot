@@ -55,7 +55,9 @@ ShaderTypes::ShaderTypes() {
 	singleton = this;
 
 	/*************** SPATIAL ***********************/
-
+	
+	shader_modes[VS::SHADER_SPATIAL].functions["vertex"].built_ins["INPOSITION"] = ShaderLanguage::TYPE_VEC4;
+	shader_modes[VS::SHADER_SPATIAL].functions["vertex"].built_ins["VERTEX_ID"] = ShaderLanguage::TYPE_INT;//Add vertex ID
 	shader_modes[VS::SHADER_SPATIAL].functions["vertex"].built_ins["VERTEX"] = ShaderLanguage::TYPE_VEC3;
 	shader_modes[VS::SHADER_SPATIAL].functions["vertex"].built_ins["NORMAL"] = ShaderLanguage::TYPE_VEC3;
 	shader_modes[VS::SHADER_SPATIAL].functions["vertex"].built_ins["TANGENT"] = ShaderLanguage::TYPE_VEC3;
@@ -185,6 +187,8 @@ ShaderTypes::ShaderTypes() {
 	shader_modes[VS::SHADER_SPATIAL].modes.push_back("ambient_light_disabled");
 
 	shader_modes[VS::SHADER_SPATIAL].modes.push_back("vertex_lighting");
+	
+	shader_modes[VS::SHADER_SPATIAL].modes.push_back("manual_glposition");
 
 	/************ CANVAS ITEM **************************/
 

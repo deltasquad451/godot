@@ -831,7 +831,8 @@ ShaderCompilerGLES3::ShaderCompilerGLES3() {
 	actions[VS::SHADER_SPATIAL].renames["PROJECTION_MATRIX"] = "projection_matrix";
 	actions[VS::SHADER_SPATIAL].renames["INV_PROJECTION_MATRIX"] = "inv_projection_matrix";
 	actions[VS::SHADER_SPATIAL].renames["MODELVIEW_MATRIX"] = "modelview";
-
+	
+	actions[VS::SHADER_SPATIAL].renames["INPOSITION"] = "inposition";
 	actions[VS::SHADER_SPATIAL].renames["VERTEX"] = "vertex.xyz";
 	actions[VS::SHADER_SPATIAL].renames["NORMAL"] = "normal";
 	actions[VS::SHADER_SPATIAL].renames["TANGENT"] = "tangent";
@@ -841,6 +842,7 @@ ShaderCompilerGLES3::ShaderCompilerGLES3() {
 	actions[VS::SHADER_SPATIAL].renames["COLOR"] = "color_interp";
 	actions[VS::SHADER_SPATIAL].renames["POINT_SIZE"] = "gl_PointSize";
 	actions[VS::SHADER_SPATIAL].renames["INSTANCE_ID"] = "gl_InstanceID";
+	actions[VS::SHADER_SPATIAL].renames["VERTEX_ID"] = "gl_VertexID";//Added vertex ID built in variable
 
 	//builtins
 
@@ -909,7 +911,8 @@ ShaderCompilerGLES3::ShaderCompilerGLES3() {
 
 	actions[VS::SHADER_SPATIAL].usage_defines["DIFFUSE_LIGHT"] = "#define USE_LIGHT_SHADER_CODE\n";
 	actions[VS::SHADER_SPATIAL].usage_defines["SPECULAR_LIGHT"] = "#define USE_LIGHT_SHADER_CODE\n";
-
+	//manual_glposition
+	actions[VS::SHADER_SPATIAL].render_mode_defines["manual_glposition"] = "#define MANUAL_GLPOSITION\n";//Calculate the gl_position manually in user defined shader
 	actions[VS::SHADER_SPATIAL].render_mode_defines["skip_vertex_transform"] = "#define SKIP_TRANSFORM_USED\n";
 	actions[VS::SHADER_SPATIAL].render_mode_defines["world_vertex_coords"] = "#define VERTEX_WORLD_COORDS_USED\n";
 	actions[VS::SHADER_SPATIAL].render_mode_defines["ensure_correct_normals"] = "#define ENSURE_CORRECT_NORMALS\n";
